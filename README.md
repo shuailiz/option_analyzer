@@ -5,6 +5,7 @@ This package implement an algorithm for predicting the range of prices for a sto
 - tensorflow
 - keras
 - lightgbm
+- pandas
 
 
 ## How to run
