@@ -1,5 +1,5 @@
-# Stock Price Range Predictor
-This package implement an algorithm for predicting the range of prices for a stock
+# Opition Analyzer
+This package implement an algorithm for analyzing the behavior of the stock market and giving option trading strategies.
 
 ## Dependencies
 - tensorflow
