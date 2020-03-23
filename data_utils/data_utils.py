@@ -74,6 +74,13 @@ class DataManager(object):
             self.log.error("Cannot get historical data for intra day!")
             return None
 
+        if len(symbol) < 1:
+            self.log.error("Invalid symbol: %s", symbol)
+            raise Exception("Invalid symbol!")
+
+        # Convert symbol to all capital letters
+        symbol = symbol.upper()
+        
         # Get the raw data
         raw_data = None
         if not fetch_data:
