@@ -66,7 +66,7 @@ class DataAPIBase():
     def get_combined_data(self):
         if self._interval not in INTERVAL_TYPE:
             self.log.error("Interval type %s is not supported!", self._interval)
-            raise("Interval type not supported!")
+            raise Exception("Interval type not supported!")
         assert self.ts_data.index.equals(self.ti_data.index), \
             "The time series and technical indicator data are not consistent!"
         data = pd.concat([self.ts_data, self.ti_data], axis=1)
