@@ -64,9 +64,9 @@ class AlphaVantageHandle(DataAPIBase):
         """
         Update the symbol and interval for the handle
         """
-        if symbol == None or (symbol != "keep" and len(symbol) <= 2):
+        if symbol == None or (symbol != "keep" and len(symbol) < 1):
             self.log.error("Invalid symbol: %s", symbol)
-            raise("Invalid symbol!")
+            raise Exception("Invalid symbol!")
         if self._symbol is not None:
             force_update = True
         if symbol != "keep":
@@ -75,7 +75,7 @@ class AlphaVantageHandle(DataAPIBase):
         if interval not in INTERVAL_TYPE and interval != "keep":
             self.log.error("Interval type %s is invalid. You must provide a type:\n  " + \
                            "".join(iv + "\n  " for iv in INTERVAL_TYPE), interval)
-            raise("Invalid interval type!")
+            raise Exception("Invalid interval type!")
 
         if self._interval is not None:
             force_update = True
@@ -118,7 +118,7 @@ class AlphaVantageHandle(DataAPIBase):
         """
         if self._interval not in INTERVAL_TYPE:
             self.log.error("Interval type %s is not supported!", self._interval)
-            raise("Interval type not supported!")
+            raise Exception("Interval type not supported!")
 
         if self._interval in INTRA_DAY_TYPE:
             self.ts_data, metadata = self.time_series.get_intraday(symbol=self._symbol,
@@ -148,7 +148,7 @@ class AlphaVantageHandle(DataAPIBase):
         """
         if self._interval not in INTERVAL_TYPE:
             self.log.error("Interval type %s is not supported!", self._interval)
-            raise("Interval type not supported!")
+            raise Exception("Interval type not supported!")
         for ti_type in TI_TYPE:
             self.log.info("Fetching ti data for %s", ti_type)
             ti_data = self._fetch_ti_data_helper(ti_type)
