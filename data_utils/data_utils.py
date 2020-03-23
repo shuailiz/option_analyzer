@@ -41,7 +41,7 @@ class DataManager(object):
             return os.path.join(base_folder_path, "data")
         elif interval not in INTERVAL_TYPE:
             self.log.error("Invalid interval type %s!", interval)
-            raise("Invalid interval type!")
+            raise Exception("Invalid interval type!")
         elif interval in INTRA_DAY_TYPE:
             return os.path.join(base_folder_path, "data", "intra_day", symbol)
         else:
@@ -161,7 +161,7 @@ class DataManager(object):
         """
         if interval not in INTERVAL_TYPE:
             self.log.error("Interval type %s is not supported while saving the data!", interval)
-            raise("Interval type not supported!")
+            raise Exception("Interval type not supported!")
 
         self.log.info("Saving data with:\n"
                       "  symbol: %s\n"
